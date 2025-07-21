@@ -1,17 +1,58 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 
 export default function Home() {
-  return (
-   <div className="flex justify-center items-center min-h-screen">
-      <Button
-        className="flex flex-col justify-center items-center hover:cursor-pointer"
-        variant="destructive"
-        onClick={() => alert("Button clicked!")}
-      >
-        click me!
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const {data: session} = authClient.useSession();
+
+  const onSubmit = async() => {
+    try{
+      await authClient.signUp.email({
+        name,
+        email,
+        password
+      }, {onError: () => {
+        window
+      },onSuccess: () => {
+        alert("User created successfully!");
+        setName("");
+        setEmail("");
+        setPassword("");
+      } 
+    });
+    } catch (error) {
+      console.error("Error creating user:", error); 
+      alert("Failed to create user. Please try again.");
+    }   
+  }
+
+  if(session){
+    return(
+      <div className="flex flex-col items-center justify-center h-screen gap-4 p-4"> 
+      <p>Logged in as {session.user.name}</p>
+      <Button onClick={() => authClient.signOut()}>
+        Sign Out
       </Button>
-    </div>
+      </div>
+    )
+  }
+
+
+  return (
+   <div className="flex flex-col items-center justify-center h-screen gap-4 p-4">
+    <Input placeholder = "name" value = {name} onChange = { (e) => setName(e.target.value)} />
+    <Input placeholder = "email" type="email" value = {email} onChange = { (e) => setEmail(e.target.value)} />
+    <Input placeholder = "password" type="password" value = {password} onChange = { (e) => setPassword(e.target.value)} />
+    <Button onClick = {onSubmit} >
+      Create user
+    </Button>
+   </div>
   );
 }
