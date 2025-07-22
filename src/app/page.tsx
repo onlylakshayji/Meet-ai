@@ -33,6 +33,26 @@ export default function Home() {
     }   
   }
 
+  const onLogin = async() => {
+    try{
+      await authClient.signIn.email({
+        email,
+        password
+      }, {onError: () => {
+        window
+      },onSuccess: () => {
+        alert("User created successfully!");
+        setName("");
+        setEmail("");
+        setPassword("");
+      } 
+    });
+    } catch (error) {
+      console.error("Error creating user:", error); 
+      alert("Failed to create user. Please try again.");
+    }   
+  }
+
   if(session){
     return(
       <div className="flex flex-col items-center justify-center h-screen gap-4 p-4"> 
@@ -46,13 +66,23 @@ export default function Home() {
 
 
   return (
-   <div className="flex flex-col items-center justify-center h-screen gap-4 p-4">
-    <Input placeholder = "name" value = {name} onChange = { (e) => setName(e.target.value)} />
-    <Input placeholder = "email" type="email" value = {email} onChange = { (e) => setEmail(e.target.value)} />
-    <Input placeholder = "password" type="password" value = {password} onChange = { (e) => setPassword(e.target.value)} />
-    <Button onClick = {onSubmit} >
-      Create user
-    </Button>
-   </div>
+    <div>
+      <div className="flex flex-col items-center justify-center h-screen gap-4 p-4">
+        <Input placeholder="name" value={name} onChange={(e) => setName(e.target.value)} />
+        <Input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input placeholder="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button onClick={onSubmit} >
+          Create user
+        </Button>
+      </div>
+
+      <div className="flex flex-col items-center justify-center h-screen gap-4 p-4">
+        <Input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input placeholder="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button onClick={onLogin} >
+          Login 
+        </Button>
+      </div>
+    </div>
   );
 }
