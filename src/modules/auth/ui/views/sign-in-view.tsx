@@ -5,6 +5,7 @@ import { OctagonAlertIcon } from "lucide-react";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { authClient } from "@/lib/auth-client";
+import {FaGithub, FaGoogle, FaLinkedin, FaTwitter} from "react-icons/fa";
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,7 @@ import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -24,6 +26,7 @@ export const SignInView = () => {
 
     const [error, setError] = useState<string | null>(null);
     const [pending, setPending] = useState(false);
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -44,6 +47,7 @@ export const SignInView = () => {
             },{
                 onSuccess: () => {
                     setPending(false);
+                    router.push("/");
                 },onError: ({error}) => {
                     setError(error.message);
                     setPending(false);
@@ -54,7 +58,7 @@ export const SignInView = () => {
         }
     }
 
-    const onSocial = (provider: "github" | "google") => {
+    const onSocial = (provider: "github" | "google" | "linkedin" | "twitter") => {
         setError(null);
         setPending(true);
     
@@ -147,12 +151,22 @@ export const SignInView = () => {
                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
                                 onClick={() => onSocial("google")}
                                 >
-                                    Google
+                                    <FaGoogle/>
                                 </Button>
                                  <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
                                  onClick={() => onSocial("github")}
                                  >
-                                    Github
+                                    <FaGithub/>
+                                </Button>
+                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                onClick={() => onSocial("linkedin")}
+                                >
+                                    <FaLinkedin/>
+                                </Button>
+                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                onClick={() => onSocial("twitter")}
+                                >
+                                    <FaTwitter/>
                                 </Button>
                             </div>
                             <div className="text-center text-sm text-muted-foreground">

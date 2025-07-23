@@ -5,6 +5,7 @@ import { OctagonAlertIcon } from "lucide-react";
 import {set, z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { authClient } from "@/lib/auth-client";
+import {FaGithub, FaGoogle, FaLinkedin, FaTwitter} from "react-icons/fa";
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,7 @@ import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -26,6 +28,8 @@ const formSchema = z.object({
 })
 
 export const SignUpView = () => {
+
+    const router = useRouter();
 
     const [error, setError] = useState<string | null>(null);
     const [pending, setPending] = useState(false);
@@ -52,6 +56,7 @@ export const SignUpView = () => {
             },{
                 onSuccess: () => {
                     setPending(false);
+                    router.push("/");
                 },onError: ({error}) => {
                     setError(error.message);
                     setPending(false);
@@ -62,7 +67,7 @@ export const SignUpView = () => {
         }
     }
 
-    const onSocial = (provider: "github" | "google") => {
+    const onSocial = (provider: "github" | "google" | "linkedin" | "twitter") => {
         setError(null);
         setPending(true);
     
@@ -188,12 +193,22 @@ export const SignUpView = () => {
                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
                                 onClick={() => onSocial("google")}
                                 >   
-                                    Google
+                                    <FaGoogle/>
                                 </Button>
                                  <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
                                  onClick={() => onSocial("github")}
                                  >
-                                    Github
+                                    <FaGithub/>
+                                </Button>
+                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                 onClick={() => onSocial("linkedin")}
+                                 >
+                                    <FaLinkedin/>
+                                </Button>
+                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                 onClick={() => onSocial("twitter")}
+                                 >
+                                    <FaTwitter/>
                                 </Button>
                             </div>
                             <div className="text-center text-sm text-muted-foreground">
