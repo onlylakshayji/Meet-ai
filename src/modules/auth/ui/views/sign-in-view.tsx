@@ -13,7 +13,6 @@ import {Form, FormField, FormItem, FormLabel, FormControl, FormMessage} from "@/
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const formSchema = z.object({
@@ -23,7 +22,6 @@ const formSchema = z.object({
 
 export const SignInView = () => {
 
-    const router = useRouter();
     const [error, setError] = useState<string | null>(null);
     const [pending, setPending] = useState(false);
 
@@ -42,9 +40,9 @@ export const SignInView = () => {
             authClient.signIn.email({
                 email: data.email,
                 password: data.password,
+                callbackURL: "/"
             },{
                 onSuccess: () => {
-                    router.push("/");
                     setPending(false);
                 },onError: ({error}) => {
                     setError(error.message);
@@ -54,6 +52,25 @@ export const SignInView = () => {
         } catch (err) {
             setError("Invalid credentials. Please try again.");
         }
+    }
+
+    const onSocial = (provider: "github" | "google") => {
+        setError(null);
+        setPending(true);
+    
+        authClient.signIn.social(
+        {
+            provider: provider,
+            callbackURL: "/"
+        },{
+            onSuccess: () => {
+                setPending(false);
+            },
+            onError: ({error}) => {
+                setPending(false);
+                setError(error.message);
+            }
+        })
     }
 
     return ( 
@@ -127,22 +144,13 @@ export const SignInView = () => {
                                 </span>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <Button variant="outline" type="button" className="w-full hover:cursor-pointer">
+                                <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                onClick={() => onSocial("google")}
+                                >
                                     Google
                                 </Button>
                                  <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
-                                 onClick={() => {
-                                    authClient.signIn.social({
-                                        provider: "github",
-                                    },{
-                                        onSuccess: () => {
-                                            router.push("/");
-                                        },
-                                        onError: ({error}) => {
-                                            setError(error.message);
-                                        }
-                                    })
-                                 }}
+                                 onClick={() => onSocial("github")}
                                  >
                                     Github
                                 </Button>
