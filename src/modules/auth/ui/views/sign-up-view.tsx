@@ -171,7 +171,20 @@ export const SignUpView = () => {
                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer">
                                     Google
                                 </Button>
-                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer">
+                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                 onClick={() => {
+                                     authClient.signIn.social({
+                                            provider: "github",
+                                        },{
+                                            onSuccess: () => {
+                                                router.push("/");
+                                            },
+                                            onError: ({error}) => {
+                                                setError(error.message);
+                                            }
+                                        })
+                                    }}
+                                 >
                                     Github
                                 </Button>
                             </div>
@@ -188,7 +201,7 @@ export const SignUpView = () => {
                 <div className="bg-radial from-green-700 to-green-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center">
                     <img src="/logo.svg" alt="Meet Ai" className="h-[92px] w-[92px]" />
                     <p className="text-2xl font-semibold text-white">
-                        Meet Ai
+                        Lakshay Ai
                     </p>
                 </div>
             </CardContent>
