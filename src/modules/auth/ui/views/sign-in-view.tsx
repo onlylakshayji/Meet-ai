@@ -138,7 +138,7 @@ export const SignInView = () => {
                             {/*//Try using disabled=form.formState.isSubmitting instead of pending
                             //to handle the button state*/}
 
-                            <Button type="submit" className="w-full hover:cursor-pointer"  disabled = {pending}>
+                            <Button type="submit" className="w-full hover:bg-green-600 hover:cursor-pointer bg-green-700 text-white font-bold"  disabled = {pending}>
                                 Sign In
                             </Button>
 
