@@ -14,6 +14,10 @@ const Experiment = () => {
         <Button variant="outline">Outline Button</Button> 
         <Button variant="ghost">Ghost Button</Button>
       </Card>
+
+      <Button>
+        Click me again!  
+      </Button>
     </div>
     
   )
