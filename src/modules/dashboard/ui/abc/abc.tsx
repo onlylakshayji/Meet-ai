@@ -18,6 +18,9 @@ const Experiment = () => {
       <Button>
         Click me again!  
       </Button>
+      <div className="mt-4">
+        <p>This is a simple experiment to test the UI components.</p>
+      </div>
     </div>
     
   )
