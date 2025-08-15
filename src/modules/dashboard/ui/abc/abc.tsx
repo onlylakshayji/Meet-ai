@@ -22,6 +22,7 @@ const Experiment = () => {
         <p>This is a simple experiment to test the UI components.</p>
         <span>This is an example for this blah blah</span>
         <h1>Hi there</h1>
+        <h2>Heyy</h2>
       </div>
     </div>
     
