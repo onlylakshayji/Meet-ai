@@ -26,13 +26,13 @@ interface ResponsiveDialogProps {
 }
 
 
-export const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({
+export const ResponsiveDialog = ({
     title,
     description,
     open,
     onOpenChange,
     children
-}) => {
+}: ResponsiveDialogProps) => {
     const isMobile = useIsMobile();
 
     if (isMobile) {
@@ -43,7 +43,9 @@ export const ResponsiveDialog: React.FC<ResponsiveDialogProps> = ({
                         <DrawerTitle>{title}</DrawerTitle>
                         <DrawerDescription>{description}</DrawerDescription>
                     </DrawerHeader>
-                    {children}
+                    <div className="p-4">
+                        {children}
+                    </div>
                 </DrawerContent>
             </Drawer>
         );
