@@ -20,6 +20,7 @@ const Experiment = () => {
       </Button>
       <div className="mt-4 p-6 ">
         <h1>this is to just make box green</h1>
+        <h2>ejbrf je</h2>
       </div>
     </div>
     
