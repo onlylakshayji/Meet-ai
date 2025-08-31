@@ -81,6 +81,7 @@ export const AgentForm = ({
                         <FormControl>
                             <Input placeholder="Agent Name" {...field} disabled={isPending}/>
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
@@ -93,11 +94,30 @@ export const AgentForm = ({
                         <FormLabel>Instructions</FormLabel>
                         <FormControl>
                             <Textarea placeholder = "Enter instructions for the Ai agents" {...field} disabled={isPending}/> 
-
                         </FormControl>
+                        <FormMessage/>
                     </FormItem>
                 )}
             />
+            <div className="flex justify-between gap-x-2">
+                {onCancel && (
+                    <Button
+                        type="button"
+                        variant="ghost"
+                        onClick={onCancel}
+                        disabled={isPending}
+                    >
+                        Cancel
+                    </Button>
+                )}
+                <Button
+                    type="submit"
+                    //className="bg-green-500 hover:bg-green-900 text-white"
+                    disabled={isPending}
+                >
+                    {isEdit ? "Update Agent" : "Create Agent"}
+                </Button>
+            </div>
         </form>
        </Form>
     )
