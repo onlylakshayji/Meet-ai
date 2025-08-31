@@ -64,8 +64,41 @@ export const AgentForm = ({
 
 
     return(
-        <div>
-        Agent Form
-        </div>
+       <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <GeneratedAvatar
+                seed = {form.watch("name")}
+                variant="botttsNeutral"
+                className="border size-16"
+            />
+
+            <FormField
+                name="name"
+                control={form.control}
+                render={({field}) => (
+                    <FormItem>
+                        <FormLabel>Agent Name</FormLabel>
+                        <FormControl>
+                            <Input placeholder="Agent Name" {...field} disabled={isPending}/>
+                        </FormControl>
+                    </FormItem>
+                )}
+            />
+
+            <FormField
+                name="instructions"
+                control={form.control}
+                render={({field}) => (
+                    <FormItem>
+                        <FormLabel>Instructions</FormLabel>
+                        <FormControl>
+                            <Textarea placeholder = "Enter instructions for the Ai agents" {...field} disabled={isPending}/> 
+
+                        </FormControl>
+                    </FormItem>
+                )}
+            />
+        </form>
+       </Form>
     )
 }
