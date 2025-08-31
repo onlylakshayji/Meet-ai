@@ -8,8 +8,8 @@ import { ErrorState } from "@/components/error-states";
 export const AgentsView = () => {
   const trpc = useTRPC();
   const {data} = useSuspenseQuery(trpc.agents.getMany.queryOptions());
-
-
+  console.log(data);
+  console.log("Rendering AgentsView");
 
   return (
     <div className="flex flex-col p-4 gap-y-4">
