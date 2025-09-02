@@ -25,6 +25,8 @@ const Page = async () => {
     redirect('/sign-in');
   }
 
+  
+
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions());
 
