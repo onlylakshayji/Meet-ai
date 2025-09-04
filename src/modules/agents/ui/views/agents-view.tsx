@@ -17,6 +17,7 @@ export const AgentsView = () => {
     { id: '3', amount: 300, status: 'failed', email: 'efg@gmail.com'},
     { id: '4', amount: 400, status: 'processing', email: 'xyz@gmail.com'},
     { id: '5', amount: 500, status: 'success', email: 'lakshay123@gmail.com'},
+    { id: '6', amount: 600, status: 'failed', email: 'dbce bejkf'}
   ]
   
   return (
