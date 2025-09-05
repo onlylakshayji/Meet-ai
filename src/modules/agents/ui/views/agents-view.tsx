@@ -10,6 +10,9 @@ import { columns, Payment } from "../components/columns";
 export const AgentsView = () => {
   const trpc = useTRPC();
   const {data} = useSuspenseQuery(trpc.agents.getMany.queryOptions());
+  console.log("data", data);
+
+  // Using mock data for now
 
   const mockData: Payment[] = [
     { id: '1', amount: 100, status: 'success', email: 'abc@gmail.com'},
