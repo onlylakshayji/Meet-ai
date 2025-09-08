@@ -200,7 +200,7 @@ export const SignUpView = () => {
                                  >
                                     <FaGithub/>
                                 </Button>
-                                 <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
+                                {/* <Button variant="outline" type="button" className="w-full hover:cursor-pointer"
                                  onClick={() => onSocial("linkedin")}
                                  >
                                     <FaLinkedin/>
@@ -209,7 +209,7 @@ export const SignUpView = () => {
                                  onClick={() => onSocial("twitter")}
                                  >
                                     <FaTwitter/>
-                                </Button>
+                                </Button> */}
                             </div>
                             <div className="text-center text-sm text-muted-foreground">
                                 Already have an account? {" "}
