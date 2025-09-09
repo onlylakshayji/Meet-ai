@@ -131,6 +131,6 @@
   button:not(:disabled),
   [role="button"]:not(:disabled){
     /* @apply cursor-pointer; */
-    cursor: pointer;
+    /*cursor: pointer;
   }
 }
