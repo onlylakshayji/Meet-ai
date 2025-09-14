@@ -3,7 +3,8 @@
 import {ColumnDef} from "@tanstack/react-table";
 import { AgentGetOne } from "../../types";
 import { GeneratedAvatar } from "@/components/generated-avatar";
-import { CornerDownRightIcon, CornerRightDown, CornerRightDownIcon } from "lucide-react";
+import { CornerDownRightIcon, CornerRightDown, CornerRightDownIcon, VideoIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export const columns: ColumnDef<AgentGetOne>[] = [
     { 
@@ -28,7 +29,18 @@ export const columns: ColumnDef<AgentGetOne>[] = [
             </div>
         )
     },
-    // { accessorKey: "email", header: "Email" },
-    // { accessorKey: "amount", header: "Amount" },
-    // { accessorKey: "id", header: "ID" },
+    {
+        accessorKey: "meetingCount",
+        header: "Meetings",
+        cell: ({row}) => (
+            <Badge
+                variant="outline"
+                className="flex items-center gap-x-2 [&>svg]:size-4"
+            >
+                <VideoIcon className="text-blue-700" />
+                {/* {row.original.meetingCount} {row.original.meetingCount === 1 ? "meeting" : "meetings"} */}
+                {`5 Meetings`}
+            </Badge>
+        )
+    }
 ];

@@ -96,7 +96,6 @@ export const SignUpView = () => {
        <div className="flex flex-col gap-6">
         <Card className="overflow-hidden p-0">
             <CardContent className="grid p-0 md:grid-cols-2">
-
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="p-6 md:p-8">
                         <div className="flex flex-col gap-6">
@@ -186,7 +185,7 @@ export const SignUpView = () => {
                             {/*//Try using disabled=form.formState.isSubmitting instead of pending
                             //to handle the button state*/}
 
-                            <Button type="submit" className="w-full hover:bg-green-600 hover:cursor-pointer bg-green-700 text-white font-bold"  disabled = {pending}>
+                            <Button type="submit" className="w-full bg-primary hover:bg-green-600 hover:cursor-pointer text-white font-bold"  disabled = {pending}>
                                 Sign Up
                             </Button>
 
