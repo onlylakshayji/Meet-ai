@@ -9,8 +9,9 @@ export const agentsRouter = createTRPCRouter({
     getOne: protectedProcedure.input(z.object({id: z.string()})).query(async ({input}) => {
         const [existingAgents] = await db
             .select({
-                ...getTableColumns(agents),
+                //Todo: Change to actual count when supported by drizzle-orm
                 meetingCount : sql<number>`5` ,
+                ...getTableColumns(agents),
             })
             .from(agents)
             .where(eq(agents.id, input.id));
@@ -18,7 +19,12 @@ export const agentsRouter = createTRPCRouter({
         return existingAgents;
     }),
     getMany: protectedProcedure.query(async () => {
-        const data = await db.select().from(agents);
+        const data = await db.select({
+                //Todo: Change to actual count when supported by drizzle-orm
+                meetingCount : sql<number>`6` ,
+                ...getTableColumns(agents),
+            })
+            .from(agents);
         return data;
     }),
     create: protectedProcedure
