@@ -12,7 +12,7 @@ const Page = async () => {
     redirect("/sign-in");
   }
 
-  return <HomeView/> // You can pass the greeting to HomeView if needed, e.g., <HomeView greeting={greeting} /> 
+  return <HomeView/>
 }
 
-export default Page;
+export default Page; 
