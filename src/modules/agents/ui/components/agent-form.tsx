@@ -39,13 +39,10 @@ export const AgentForm = ({
     const createAgent = useMutation(
         trpc.agents.create.mutationOptions({
             onSuccess: async() => {
-                await queryClient.invalidateQueries(trpc.agents.getMany.queryOptions({}));
+                await queryClient.invalidateQueries(
+                    trpc.agents.getMany.queryOptions({})
+                );
 
-                if(initialValues?.id){
-                    await queryClient.invalidateQueries(
-                        trpc.agents.getOne.queryOptions({id: initialValues.id})
-                    );
-                }
                 //Invalidate free tier usage
                 onSuccess?.();
             },
@@ -61,7 +58,9 @@ export const AgentForm = ({
     const updateAgent = useMutation(
         trpc.agents.update.mutationOptions({
             onSuccess: async() => {
-                await queryClient.invalidateQueries(trpc.agents.getMany.queryOptions({}));
+                await queryClient.invalidateQueries(
+                    trpc.agents.getMany.queryOptions({})
+                );
 
                 if(initialValues?.id){
                     await queryClient.invalidateQueries(
@@ -94,7 +93,9 @@ export const AgentForm = ({
 
     const onSubmit = (values: z.infer<typeof agentsInsertSchema>) => {
         if(isEdit){
-            updateAgent.mutate({...values,id: initialValues.id});
+            //updateAgent.mutate({...values,id: initialValues.id});
+            console.log(` the values in agent-form are : ${values} , initial values are : ${initialValues}`);
+            updateAgent.mutate({ ...values , id: initialValues.id});
         }else{
             createAgent.mutate(values);
         };

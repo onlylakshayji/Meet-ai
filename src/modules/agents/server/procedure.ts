@@ -10,7 +10,7 @@ import { TRPCError } from '@trpc/server';
 export const agentsRouter = createTRPCRouter({
     update: protectedProcedure
     .input(agentsUpdateSchema)
-    .mutation(async ({input , ctx}) => {
+    .mutation(async ({ctx,input}) => {
         const [updatedAgent] = await db
             .update(agents)
             .set(input)
@@ -26,6 +26,7 @@ export const agentsRouter = createTRPCRouter({
             throw new TRPCError({code: "NOT_FOUND",message : "Agent not found"});
         }
 
+        console.log("Updated agent: ", updatedAgent);
         return updatedAgent;
     })
     ,
@@ -68,6 +69,8 @@ export const agentsRouter = createTRPCRouter({
             if(!existingAgents){
                 throw new TRPCError({code: "NOT_FOUND",message : "Agent not found"});
             }
+
+            console.log("Existing agent: ", existingAgents);
             
         return existingAgents;
     }),
