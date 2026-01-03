@@ -126,5 +126,5 @@ export const agentsRouter = createTRPCRouter({
             })
             .returning();
             return createdAgent;
-        }),
+    }),
 })
