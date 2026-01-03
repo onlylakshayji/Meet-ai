@@ -1,11 +1,12 @@
-import { createTRPCRouter } from '../init';
+import { meetingsRouter } from '@/modules/meetings/server/procedure';
 import { agentsRouter } from '@/modules/agents/server/procedure';
+
+import { createTRPCRouter } from '../init';
+
 export const appRouter = createTRPCRouter({
   agents: agentsRouter,
-  // Add other routers here as needed
-  // e.g., users: usersRouter, posts: postsRouter, etc.
-  // hello: helloRouter,
-  // ... other routers
+  meetings: meetingsRouter,
 });
-// export type definition of API
+
+
 export type AppRouter = typeof appRouter;

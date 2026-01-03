@@ -16,10 +16,10 @@ export const UpdateAgentDialog = ({
 }: UpdateAgentDialogProps) => {
     return (
         <ResponsiveDialog
-            open={open}
-            onOpenChange={onOpenChange}
             title="Update agent"
             description="Edit agent details. Changes will be reflected in future meetings only."
+            open={open}
+            onOpenChange={onOpenChange}
         >
             <AgentForm
                 onSuccess={() => onOpenChange(false)}

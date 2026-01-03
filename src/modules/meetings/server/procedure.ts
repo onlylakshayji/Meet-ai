@@ -25,8 +25,6 @@ export const meetingsRouter = createTRPCRouter({
             if(!existingMeeting){
                 throw new TRPCError({code: "NOT_FOUND",message : "Meeting not found"});
             }
-
-            console.log("Existing agent: ", existingMeeting);
             
         return existingMeeting;
     }),

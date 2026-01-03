@@ -19,7 +19,6 @@ import{
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { init } from "next/dist/compiled/webpack/webpack";
 import { toast } from "sonner";
 
 interface AgentFormProps{
@@ -52,7 +51,7 @@ export const AgentForm = ({
 
             }
         })
-    )
+    );
 
 
     const updateAgent = useMutation(
@@ -84,7 +83,7 @@ export const AgentForm = ({
         resolver: zodResolver(agentsInsertSchema),
         defaultValues: {
             name: initialValues?.name ?? "",
-            instructions: initialValues?.instructions ??""
+            instructions: initialValues?.instructions ?? ""
         },
     });
 
@@ -93,8 +92,6 @@ export const AgentForm = ({
 
     const onSubmit = (values: z.infer<typeof agentsInsertSchema>) => {
         if(isEdit){
-            //updateAgent.mutate({...values,id: initialValues.id});
-            console.log(` the values in agent-form are : ${values} , initial values are : ${initialValues}`);
             updateAgent.mutate({ ...values , id: initialValues.id});
         }else{
             createAgent.mutate(values);
