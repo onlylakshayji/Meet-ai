@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "sonner";
-
+import { Analytics } from "@vercel/analytics/next"
 import { NuqsAdapter } from "nuqs/adapters/next";
 
 
@@ -36,6 +36,7 @@ export default function RootLayout({
           >
             <Toaster/>
             {children}
+            <Analytics />
           </body>
         </html>
       </TRPCReactProvider>
