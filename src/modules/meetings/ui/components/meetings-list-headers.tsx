@@ -16,7 +16,6 @@ export const MeetingsListHeaders = () => {
                     <div className="flex items-center justify-between">
                         <h5 className="font-medium text-xl">My meetings</h5>
                         <Button onClick={() => setIsDialogOpen(true)} 
-                        // className="bg-green-500 hover:bg-green-900 text-white"
                         >
                             <PlusIcon/>
                             New Meeting
@@ -24,7 +23,7 @@ export const MeetingsListHeaders = () => {
                     </div>
                 </div>
                 <div className="flex items-center gap-x-2 p-1">
-                    //Todo : filters
+                    {/* Todo : filters */}
                 </div>
             </div>
         </>

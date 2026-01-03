@@ -19,8 +19,6 @@ import {
   StarIcon,
   VideoIcon,
   UserIcon,
-  BriefcaseIcon,
-  Code2Icon,
   ExternalLinkIcon
 } from "lucide-react";
 import Image from "next/image";
