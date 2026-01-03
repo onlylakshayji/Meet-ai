@@ -73,6 +73,7 @@ export const agents = pgTable("agents", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+
 export const meetingStatus = pgEnum("meeting_status", [
   "upcoming",
   "active",
@@ -80,6 +81,7 @@ export const meetingStatus = pgEnum("meeting_status", [
   "processing",
   "cancelled"
 ]);
+
 
 export const meetings = pgTable("meetings", {
   id: text("id").primaryKey().$defaultFn(() => nanoid()),
