@@ -173,7 +173,7 @@ export const SignUpView = () => {
 
                             {!!error && (
                                 <Alert className="bg-destructive/10 border-none">
-                                    <OctagonAlertIcon className="h-4 w-4 !text-destructive" />
+                                    <OctagonAlertIcon className="h-4 w-4 text-destructive!" />
                                     <AlertTitle>{error}</AlertTitle>
                                     {/* <AlertDescription>
                                         Please check your credentials and try again.
